@@ -12,14 +12,23 @@ const Button = ({ type = 'button', children }) => {
          `}
       >
          <button  type={type} 
-                  className={css`
-                     padding:15px;
-                     font-size:14px;
+                  className={css`\
+                     color:white;
+                     width: 100%;
                      cursor:pointer;
-                     border-radius:20px;
-                     background-color:white;
-                     color:${theme.colors.primary};
-                     border:2px solid ${theme.colors.secondary};
+                     position: relative;
+                     display:inline-block;
+                     text-decoration: none;
+                     transition-duration: 0.4s;
+                     padding:${theme.spaces[4]};
+                     border:${theme.borderRadius[1]};
+                     border-radius:${theme.borderRadius[1]};
+                     font-size:${theme.typography.paragraph};
+                     background-color:${theme.colors.primary};
+                     &:hover{
+                        box-shadow: ${theme.boxShadow.light}
+                     }
+                     }
                   `}
          >
             {children}

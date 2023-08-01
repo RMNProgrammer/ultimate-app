@@ -9,7 +9,7 @@ const InputText = ({ placeholder }) => {
             width: 100%;
          `}
       >
-         <Input type='text' placeholder={placeholder} />
+         <Input type='text' placeholder={placeholder} direction='rtl' />
       </div>
    )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, cx } from '@emotion/css'
 
-const Input = ({ type = 'text', placeholder }) => { 
+const Input = ({ type = 'text', placeholder, direction }) => { 
    return(
       <div 
          className={css`
@@ -9,7 +9,7 @@ const Input = ({ type = 'text', placeholder }) => {
             margin: 25px 0px;
          `}
       >
-         <input type={type} placeholder={placeholder} className={css`padding:10px;height:20px;font-size:13.9px;text-align:right;`} />
+         <input type={type} placeholder={placeholder} className={css`padding:8px;height:40px;width:220px;direction:${direction}`} />
       </div>
    )
 }

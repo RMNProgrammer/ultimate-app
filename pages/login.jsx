@@ -20,8 +20,8 @@ export default function Login() {
          </Head>
          <LayoutAuth>
             <form onSubmit={handleSubmit}>
-               <InputEmail placeholder='ایمیل'/>
-               <InputPassword placeholder='کلمه عبور' />
+               <InputEmail placeholder='email | ایمیل'/>
+               <InputPassword placeholder='password | رمز عبور' />
                <Button type='submit'>ارسال</Button>
             </form>
          </LayoutAuth>
