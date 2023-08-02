@@ -19,14 +19,6 @@ const LayoutAuth = ({ children }) => {
                `}
                src='logo.png' 
             />
-            <h2
-               className={css`
-                  font-size: 20px;
-                  text-align: center;
-               `}
-            >
-               Ultimate App
-            </h2>
          </div>
          <div
             className={css`

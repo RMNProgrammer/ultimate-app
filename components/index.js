@@ -1,3 +1,4 @@
+export { H1, H2 } from './Typography'
 export { default as Button } from './button'
 export { default as InputText } from './InputText'
 export { default as InputEmail } from './InputEmail'

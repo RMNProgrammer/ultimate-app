@@ -6,7 +6,6 @@ const Input = ({ type = 'text', placeholder, direction }) => {
       <div 
          className={css`
             width: 100%;
-            margin: 25px 0px;
          `}
       >
          <input type={type} placeholder={placeholder} className={css`padding:8px;height:40px;width:220px;direction:${direction}`} />

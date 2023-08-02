@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import { css, cx } from '@emotion/css'
 import LayoutAuth from '../containers/layoutAuth'
-import { InputEmail, InputPassword, Button} from '../components'
+import FormControl from '../containers/FormControl'
+import { InputEmail, InputPassword, Button, H2 } from '../components'
 
 export default function Login() {
    const handleSubmit = (event) => {
@@ -19,10 +19,17 @@ export default function Login() {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <LayoutAuth>
+            <H2>به ریموت جابب خوش آمدید</H2>
             <form onSubmit={handleSubmit}>
-               <InputEmail placeholder='email | ایمیل'/>
-               <InputPassword placeholder='password | رمز عبور' />
-               <Button type='submit'>ارسال</Button>
+               <FormControl>
+                  <InputEmail placeholder='email | ایمیل'/>
+               </FormControl>
+               <FormControl>
+                  <InputPassword placeholder='password | رمز عبور' />
+               </FormControl>
+               <FormControl>
+                  <Button type='submit'>وارد شوید</Button>
+               </FormControl>
             </form>
          </LayoutAuth>
       </>
