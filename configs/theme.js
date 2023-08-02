@@ -4,18 +4,40 @@ const theme = {
         backgroundColorPrimary: '#f8f9fa',
     },
     typography: {
-        paragraph: {
-            fontSize: '1em',
-        },
         h1: {
-            fontSize: 1.602,
-            lineHeight: 1.3,
-            fontWeight: 400,
+            fontSize: 1.502,
+            lineHeight: 1.2,
+            fontWeight: 500,
         },
         h2: {
-            fontSize: 1.402,
-            lineHeight: 1.3,
-            fontWeight: 400,
+            fontSize: 1.352,
+            lineHeight: 1.2,
+            fontWeight: 500,
+        },
+        h3: {
+            fontSize: 1.174,
+            lineHeight: 1.2,
+            fontWeight: 500,
+        },
+        h4: {
+            fontSize: 1.016,
+            lineHeight: 1.2,
+            fontWeight: 500,
+        },
+        h5: {
+            fontSize: 0.875,
+            lineHeight: 1.2,
+            fontWeight: 500,
+        },
+        paragraph: {
+            fontSize: 1.016,
+            lineHeight: 1.2,
+            fontWeight: 500,
+        },
+        small: {
+            fontSize: 1.352,
+            lineHeight: 1.2,
+            fontWeight: 100,
         },
     },
     spaces: ['1px','2px','4px','8px','16px','32px'],

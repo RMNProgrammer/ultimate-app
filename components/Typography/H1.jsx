@@ -6,7 +6,6 @@ const H1 = ({ children }) => {
    const theme = useTheme()
    return(
       <h1 className={css` 
-         margin-top: 0;
          margin: 0.6rem 0 1.2rem;
          font-size: ${theme.typography.h1.fontSize}em;
          font-weight: ${theme.typography.h1.fontWeight};

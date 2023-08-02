@@ -5,8 +5,7 @@ import { useTheme } from '@emotion/react'
 const H2 = ({ children }) => { 
    const theme = useTheme()
    return(
-      <h1 className={css` 
-         margin-top: 0;
+      <h2 className={css` 
          margin: 0.6rem 0 1.2rem;
          font-size: ${theme.typography.h2.fontSize}em;
          font-weight: ${theme.typography.h2.fontWeight};
@@ -14,7 +13,7 @@ const H2 = ({ children }) => {
          `}
       >
          {children}
-      </h1>
+      </h2>
    )
 }
 
