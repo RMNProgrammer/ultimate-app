@@ -1,9 +1,12 @@
 import { css, cx } from '@emotion/css'
+import { useSelector } from 'react-redux'
 import { useTheme } from '@emotion/react'
 import { H3, H2, Hyperlink, Button, Paragraph, Small } from '../components'
 
 const LayoutPage = ({ children }) => {
+  const auth = useSelector((state) => state.auth)
   const theme = useTheme()
+  
   return (
     <div
       className={css`max-width: 100%;`}
@@ -54,33 +57,36 @@ const LayoutPage = ({ children }) => {
               align-items: center;
             `}
           >
-            <ul
-              className={css`
-                display: flex;
-                li {
-                  padding: 0 16px;
+            { !auth || !auth.logged &&
+              <ul
+                className={css`
                   display: flex;
-                  align-items: center;
-                }
-              `}
-            >
-              <li>
-                <Hyperlink
-                  className={css`border: none;`}
-                  href="/login"
-                >
-                  ورود
-                </Hyperlink>
-              </li>
-              <li>
-                <Hyperlink
-                  className={css`border: none;`}
-                  href="/register"
-                >
-                  <Button href="/register">ثبت نام</Button>
-                </Hyperlink>
-              </li>
-            </ul>
+                  li {
+                    padding: 0 16px;
+                    display: flex;
+                    align-items: center;
+                  }
+                `}
+              >
+                <li>
+                  <Hyperlink
+                    className={css`border: none;`}
+                    href="/login"
+                  >
+                    ورود
+                  </Hyperlink>
+                </li>
+                <li>
+                  <Hyperlink
+                    className={css`border: none;`}
+                    href="/register"
+                  >
+                    <Button href="/register">ثبت نام</Button>
+                  </Hyperlink>
+                </li>
+              </ul> 
+            }
+            { auth && auth.logged && <div>خوش آمدید</div> }
           </div>
         </div>
       </div>

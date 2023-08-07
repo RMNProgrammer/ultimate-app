@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import LayoutAuth from '../containers/layoutAuth'
+import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
 import { InputText, InputEmail, InputPassword, Button, H2, Hyperlink } from '../components'
 

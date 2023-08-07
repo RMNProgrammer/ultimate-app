@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
-import LayoutAuth from '../containers/layoutAuth'
+import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
 import { InputEmail, Button, H2 } from '../components'
 

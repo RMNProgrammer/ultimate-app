@@ -1,16 +1,27 @@
 import React from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
-import LayoutAuth from '../containers/layoutAuth'
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import actionTypes from '../configs/actionTypes'
+import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
 import { InputEmail, InputPassword, Button, H2, Hyperlink } from '../components'
 
 export default function Login() {
+   const router = useRouter()
+   const dispatch = useDispatch()
    const [formValue,setFormValue] = useState({})
 
    const handleSubmit = (event) => {
       if (event) event.preventDefault()
       console.log('handleSubmit',formValue)
+      dispatch({
+         type: actionTypes.LOGIN,
+         logged: true,
+         email: formValue.email
+      })
+      router.push('/')
    }
 
    const handleOnChange = (name,value) => {
