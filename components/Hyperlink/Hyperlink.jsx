@@ -6,11 +6,11 @@ import { Paragraph } from '../Typography'
 const Hyperlink = ({ href, text, children }) => { 
    return(
       <div>
-         <Paragraph>{text}</Paragraph>
+         { text && <Paragraph>{text}</Paragraph> }
          <Link legacyBehavior href={href} >
             <a className={css`
                   cursor: pointer;
-                  margin-right: 25px;
+                  margin-right: 15px;
                   display: inline-block;
                   text-decoration: none;
                `}

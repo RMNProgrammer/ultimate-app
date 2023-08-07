@@ -1,7 +1,8 @@
 const theme = {
     colors: {
         primary: '#f03e3e',
-        backgroundColorPrimary: '#f8f9fa',
+        backgroundColorPrimary: 'rgba(220, 221, 225,0.5)',
+        backgroundColorDefault: '#f8f9fa',
     },
     typography: {
         h1: {
@@ -30,7 +31,7 @@ const theme = {
             fontWeight: 500,
         },
         paragraph: {
-            fontSize: 1.016,
+            fontSize: 1.100,
             lineHeight: 1.2,
             fontWeight: 500,
         },
