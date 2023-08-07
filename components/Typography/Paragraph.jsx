@@ -6,6 +6,7 @@ const Paragraph = ({ children }) => {
    const theme = useTheme()
    return(
       <p className={css` 
+         display: inline-block;
          margin: 0.6rem 0 1.2rem;
          font-size: ${theme.typography.paragraph.fontSize}em;
          font-weight: ${theme.typography.paragraph.fontWeight};

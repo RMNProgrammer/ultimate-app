@@ -1,17 +1,17 @@
 import React from 'react'
-import Input from './Input'
+import Input from '../Input/Input'
 import { css, cx } from '@emotion/css'
 
-const InputPassword = ({ placeholder }) => { 
+const InputText = (props) => { 
    return(
       <div 
          className={css`
             width: 100%;
          `}
       >
-         <Input type='password' placeholder={placeholder} direction='ltr' />
+         <Input type='text' {...props} />
       </div>
    )
 }
 
-export default InputPassword
+export default InputText
