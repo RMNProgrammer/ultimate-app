@@ -2,7 +2,7 @@ import React from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-const Button = ({ type = 'button', children }) => { 
+const Button = ({ type = 'button', children, loading }) => { 
    const theme = useTheme()
 
    return(
@@ -31,7 +31,8 @@ const Button = ({ type = 'button', children }) => {
                      }
                   `}
          >
-            {children}
+            { loading && 'چند لحظه صبر کنید...' }
+            { !loading && children }
          </button>
       </div>
    )
