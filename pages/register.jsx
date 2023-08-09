@@ -2,18 +2,22 @@ import React from 'react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { REGISTER_ACTION } from '../actions/index'
 import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
+import { useDispatch, useSelector } from 'react-redux'
 import { InputText, InputEmail, InputPassword, Button, H2, Hyperlink } from '../components'
 
 export default function Register() {
    const router = useRouter()
+   const dispatch = useDispatch()
    const [formValue,setFormValue] = useState({})
+   const auth = useSelector((state) => state.auth ) 
 
    const handleSubmit = (event) => {
       if (event) event.preventDefault()
-      console.log('handleSubmit',formValue)
-      router.push('/login')
+      dispatch(REGISTER_ACTION())
+      //router.push('/login')
    }
 
    const handleOnChange = (name,value) => {
@@ -44,7 +48,7 @@ export default function Register() {
                   <InputPassword onChange={(value) => handleOnChange('password',value)} placeholder='رمز عبور' />
                </FormControl>
                <FormControl>
-                  <Button type='submit'>ثبت نام</Button>
+                  <Button type='submit' loading={auth.loading}>ثبت نام</Button>
                </FormControl>
                <Hyperlink href='/login' text='قبلا ثبت نام کرده اید؟'>وارد شوید</Hyperlink>
             </form>

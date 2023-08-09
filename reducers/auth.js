@@ -21,6 +21,23 @@ const auth = (state = [], action) => {
                 ...state, 
                 ...action,
             }
+        case actionTypes.REGISTER_STARTED:
+            return { 
+                ...state, 
+                loading: action.loading,
+                logged: action.logged,
+            }
+        case actionTypes.REGISTER_SUCCESS:
+            return { 
+                ...state, 
+                loading: action.loading,
+                logged: action.logged,
+            }
+        case actionTypes.REGISTER_FAIL:
+            return { 
+                ...state, 
+                ...action,
+            }
         default:
             return state
     }
