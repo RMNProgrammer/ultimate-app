@@ -13,13 +13,13 @@ const reduxCall = async (dispatch,{ url, method, name }) => {
             type: actionTypes[`${name}_SUCCESS`],
             loading: false,
             logged: true,
-            ...response,
+            response,
         })
     }
     catch(e){
         console.log('error',e)
         dispatch({
-            type: actionTypes[`${name}_FAIL`],
+            type: actionTypes[`${name}_FAILED`],
             loading: false,
             logged: false,
             error: true,

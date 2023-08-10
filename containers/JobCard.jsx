@@ -2,7 +2,7 @@ import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 import { H2, H3, H4 } from '../components'
 
-const JobCard = () => {
+const JobCard = ({data}) => {
   const theme = useTheme()
   return (
     <div
@@ -27,9 +27,9 @@ const JobCard = () => {
       `}
     >
       <div>
-        <H2>شرکت ما</H2>
-        <H4>برنامه‌نویس Frontend</H4>
-        <H2>تمام‌وقت</H2>
+        <H2>{data.compony}</H2>
+        <H4>{data.title}</H4>
+        <H2>{data.job_type}</H2>
       </div>
       <div
         className={css`
@@ -42,7 +42,7 @@ const JobCard = () => {
           border-color: ${theme.borderColor.light};
         `}
       >
-        <H3>۱ اردیبهشت</H3>
+        <H3>{data.date}</H3>
       </div>
     </div>
   )

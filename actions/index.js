@@ -1,3 +1,4 @@
+import { GET_LIST_JOB_ACTION } from './job'
 import { LOGIN_ACTION, REGISTER_ACTION } from './auth'
 
-export { LOGIN_ACTION, REGISTER_ACTION, }
+export { LOGIN_ACTION, REGISTER_ACTION, GET_LIST_JOB_ACTION }

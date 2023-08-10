@@ -1,7 +1,6 @@
-import actionTypes from "../configs/actionTypes"
+import actionTypes from '../configs/actionTypes'
 
 const auth = (state = [], action) => {
-    console.log('action',action)
     switch(action.type) {
         case actionTypes.LOGIN_STARTED:
             return { 
@@ -16,7 +15,7 @@ const auth = (state = [], action) => {
                 logged: action.logged,
                 user: action.user,
             }
-        case actionTypes.LOGIN_FAIL:
+        case actionTypes.LOGIN_FAILED:
             return { 
                 ...state, 
                 ...action,
@@ -33,7 +32,7 @@ const auth = (state = [], action) => {
                 loading: action.loading,
                 logged: action.logged,
             }
-        case actionTypes.REGISTER_FAIL:
+        case actionTypes.REGISTER_FAILED:
             return { 
                 ...state, 
                 ...action,
