@@ -1,11 +1,12 @@
 import Head from 'next/head'
 import { H2 } from '../components'
 import { css, cx } from '@emotion/css'
+import { GET_LIST_JOB_ACTION } from '../actions'
 import LayoutPage from '../containers/LayoutPage'
 import JobCardList from '../containers/JobCardList'
 import HomePageBanner from '../containers/HomePageBanner'
 
-export default function Home() {
+const Home = ({ jobs, loading }) => {
   return (
     <>
       <Head>
@@ -31,10 +32,18 @@ export default function Home() {
             لیست جاب‌ها
           </H2>
           <div>
-            <JobCardList />
+            <JobCardList jobs={jobs} loading={loading} />
           </div>
         </div>
       </LayoutPage>
     </>
   )
 }
+
+Home.getInitialProps = async ({ reduxStore }) => {
+  await reduxStore.dispatch(GET_LIST_JOB_ACTION())
+  const { job } = reduxStore.getState()
+  return { loading:job.loading, jobs: job.jobs }
+}
+
+export default Home
