@@ -2,7 +2,7 @@ import React from 'react'
 import { css, cx } from '@emotion/css'
 import { useTheme } from '@emotion/react'
 
-const Button = ({ type = 'button', children, loading }) => { 
+const Button = ({ type = 'button', children, onClick = () => {}, loading }) => { 
    const theme = useTheme()
 
    return(
@@ -12,7 +12,7 @@ const Button = ({ type = 'button', children, loading }) => {
          `}
       >
          <button  type={type} 
-                  className={css`\
+                  className={css`
                      color:white;
                      width: 100%;
                      cursor:pointer;
@@ -23,13 +23,14 @@ const Button = ({ type = 'button', children, loading }) => {
                      padding:${theme.spaces[4]};
                      border:${theme.borderRadius[1]};
                      border-radius:${theme.borderRadius[1]};
-                     font-size:${theme.typography.paragraph};
                      background-color:${theme.colors.primary};
-                     &:hover{
-                        box-shadow: ${theme.boxShadow.light}
-                     }
+                     font-size:${theme.typography.paragraph.fontSize};
+                        &:hover{
+                           box-shadow: ${theme.boxShadow.light}
+                        }
                      }
                   `}
+                  onClick={onClick}
          >
             { loading && 'چند لحظه صبر کنید...' }
             { !loading && children }

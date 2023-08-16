@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Renders Correctly 1`] = `
+<div
+  className="css-wemwrz"
+>
+  <button
+    className="css-16ru7d"
+    onClick={[Function]}
+    type="button"
+  >
+    Sample Button
+  </button>
+</div>
+`;
+
+exports[`Button Shows Loading state 1`] = `
+<div
+  className="css-wemwrz"
+>
+  <button
+    className="css-16ru7d"
+    onClick={[Function]}
+    type="button"
+  >
+    چند لحظه صبر کنید...
+  </button>
+</div>
+`;
