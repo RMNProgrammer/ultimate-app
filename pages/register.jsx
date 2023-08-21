@@ -4,24 +4,25 @@ import { useRouter } from 'next/router'
 import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
 import { useDispatch, useSelector } from 'react-redux'
-import { REGISTER_ACTION, LOGIN_ACTION } from '../actions'
+import { REGISTER_ACTION, REGISTER_INFO_ACTION } from '../actions'
 import { InputText, InputEmail, InputPassword, Button, H2, Hyperlink, Alert } from '../components'
 
 const Register = ({ users }) => {
+   let registered = false
    const router = useRouter()
    const dispatch = useDispatch()
    const [message,setMessage] = useState(null)
    const [formValue,setFormValue] = useState({})
    const auth = useSelector((state) => state.auth )
-   const [registered,setRegistered] = useState(false)
 
    const handleSubmit = (event) => {
       if (event) event.preventDefault()
       if ( formValue.name && formValue.email && formValue.password ){
          users.map((user) => {
-            if ( user.email == formValue.email ){ setRegistered(true) }
+            if ( user.email == formValue.email ){ registered = true }
          })
-         if ( registered === false ){
+         if ( !registered ){
+            setMessage('کاربر موردنظر با موفقیت ثبت نام شد')
             dispatch(REGISTER_ACTION(formValue))
             router.push('/login')
          }
@@ -73,7 +74,7 @@ const Register = ({ users }) => {
 }
 
 Register.getInitialProps = async ({ reduxStore }) => {
-   await reduxStore.dispatch(LOGIN_ACTION())
+   await reduxStore.dispatch(REGISTER_INFO_ACTION())
    const { auth } = reduxStore.getState()
    return { users: auth.users }
 }

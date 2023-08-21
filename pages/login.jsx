@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { InputEmail, InputPassword, Button, H2, Alert, Hyperlink } from '../components'
 
 export default function Login() {
+   let found = false
    const router = useRouter()
    const dispatch = useDispatch()
    const [message,setMessage] = useState(null)
    const [formValue,setFormValue] = useState({})
    const { users, loading } = useSelector((state) => state.auth )
 
-   const handleSubmit = async (event) => {
+   const handleSubmit = (event) => {
       if (event) event.preventDefault()
       if ( formValue.email && formValue.password ){ dispatch(LOGIN_ACTION()) }
       else{ setMessage('لطفا فیلد های زیر را تکمیل کرده و مجدد اقدام کنید') }
@@ -32,9 +33,11 @@ export default function Login() {
          users.map((user) => {
             if ( user.email == formValue.email && user.password == formValue.password ){ 
                router.push('/') 
+               setMessage(null)
+               found = true
             }
          })
-         setMessage('نام کاربری یا رمز عبور اشتباه است')
+         if( !found ){ setMessage('نام کاربری یا رمز عبور اشتباه است') }  
       }
    },[users])
 

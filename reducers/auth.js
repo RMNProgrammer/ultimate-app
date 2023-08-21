@@ -23,17 +23,30 @@ const auth = (state = [], action) => {
         case actionTypes.REGISTER_STARTED:
             return { 
                 ...state, 
-                loading: action.loading,
-                logged: action.logged,
+                loading: action.loading
             }
         case actionTypes.REGISTER_SUCCESS:
             return { 
                 ...state, 
-                loading: action.loading,
-                logged: action.logged,
-                users: action.response
+                loading: action.loading
             }
         case actionTypes.REGISTER_FAILED:
+            return { 
+                ...state, 
+                ...action,
+            }
+        case actionTypes.REGISTER_INFO_STARTED:
+            return { 
+                ...state, 
+                loading: action.loading
+            }
+        case actionTypes.REGISTER_INFO_SUCCESS:
+            return { 
+                ...state, 
+                loading: action.loading,
+                users: action.response
+            }
+        case actionTypes.REGISTER_INFO_FAILED:
             return { 
                 ...state, 
                 ...action,
