@@ -1,23 +1,37 @@
-import React from 'react'
 import Head from 'next/head'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { REGISTER_ACTION } from '../actions/index'
 import LayoutAuth from '../containers/LayoutAuth'
 import FormControl from '../containers/FormControl'
 import { useDispatch, useSelector } from 'react-redux'
-import { InputText, InputEmail, InputPassword, Button, H2, Hyperlink } from '../components'
+import { REGISTER_ACTION, LOGIN_ACTION } from '../actions'
+import { InputText, InputEmail, InputPassword, Button, H2, Hyperlink, Alert } from '../components'
 
-export default function Register() {
+const Register = ({ users }) => {
    const router = useRouter()
    const dispatch = useDispatch()
+   const [message,setMessage] = useState(null)
    const [formValue,setFormValue] = useState({})
-   const auth = useSelector((state) => state.auth ) 
+   const auth = useSelector((state) => state.auth )
+   const [registered,setRegistered] = useState(false)
 
    const handleSubmit = (event) => {
       if (event) event.preventDefault()
-      dispatch(REGISTER_ACTION())
-      //router.push('/login')
+      if ( formValue.name && formValue.email && formValue.password ){
+         users.map((user) => {
+            if ( user.email == formValue.email ){ setRegistered(true) }
+         })
+         if ( registered === false ){
+            dispatch(REGISTER_ACTION(formValue))
+            router.push('/login')
+         }
+         else{
+            setMessage('کاربر موردنظر قبلا ثبت نام کرده است')
+         }
+      }
+      else{
+         setMessage('لطفا فیلد های زیر را تکمیل کرده و مجدد اقدام کنید')
+      }
    }
 
    const handleOnChange = (name,value) => {
@@ -37,6 +51,7 @@ export default function Register() {
          </Head>
          <LayoutAuth>
             <H2>لطفا در ریموت جابب ثبت نام کنید</H2>
+            { message && <Alert>{message}</Alert> }
             <form onSubmit={handleSubmit}>
                <FormControl>
                   <InputText onChange={(value) => handleOnChange('name',value)} placeholder='نام و نام خانوادگی' />
@@ -56,3 +71,11 @@ export default function Register() {
       </>
    )
 }
+
+Register.getInitialProps = async ({ reduxStore }) => {
+   await reduxStore.dispatch(LOGIN_ACTION())
+   const { auth } = reduxStore.getState()
+   return { users: auth.users }
+}
+
+export default Register

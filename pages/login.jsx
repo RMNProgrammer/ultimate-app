@@ -1,25 +1,23 @@
-import React from 'react'
 import Head from 'next/head'
-import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { LOGIN_ACTION } from '../actions/index'
 import LayoutAuth from '../containers/LayoutAuth'
+import React, { useState, useEffect } from 'react'
 import FormControl from '../containers/FormControl'
 import { useDispatch, useSelector } from 'react-redux'
-import { InputEmail, InputPassword, Button, H2, Hyperlink } from '../components'
+import { InputEmail, InputPassword, Button, H2, Alert, Hyperlink } from '../components'
 
 export default function Login() {
    const router = useRouter()
    const dispatch = useDispatch()
+   const [message,setMessage] = useState(null)
    const [formValue,setFormValue] = useState({})
-   const auth = useSelector((state) => state.auth )
+   const { users, loading } = useSelector((state) => state.auth )
 
    const handleSubmit = async (event) => {
       if (event) event.preventDefault()
-      dispatch(LOGIN_ACTION())
-      /*setTimeout(() => {
-         router.push('/') 
-      }, 5200);*/
+      if ( formValue.email && formValue.password ){ dispatch(LOGIN_ACTION()) }
+      else{ setMessage('لطفا فیلد های زیر را تکمیل کرده و مجدد اقدام کنید') }
    }
 
    const handleOnChange = (name,value) => {
@@ -28,6 +26,17 @@ export default function Login() {
          [name]: value,
       })
    }
+
+   useEffect(()=>{
+      if ( users ){
+         users.map((user) => {
+            if ( user.email == formValue.email && user.password == formValue.password ){ 
+               router.push('/') 
+            }
+         })
+         setMessage('نام کاربری یا رمز عبور اشتباه است')
+      }
+   },[users])
 
    return (
       <>
@@ -39,6 +48,7 @@ export default function Login() {
          </Head>
          <LayoutAuth>
             <H2>به ریموت جابب خوش آمدید</H2>
+            { message && <Alert>{message}</Alert> }
             <form onSubmit={handleSubmit}>
                <FormControl>
                   <InputEmail onChange={(value) => handleOnChange('email',value)} placeholder='ایمیل'/>
@@ -47,7 +57,7 @@ export default function Login() {
                   <InputPassword onChange={(value) => handleOnChange('password',value)} placeholder='رمز عبور' />
                </FormControl>
                <FormControl>
-                  <Button type='submit' loading={auth.loading}>وارد شوید</Button>
+                  <Button type='submit' loading={loading}>وارد شوید</Button>
                </FormControl>
                <Hyperlink href='/register' text='ثبت نام نکرده اید؟'>ثبت نام کنید</Hyperlink>
                <Hyperlink href='/forgot' text='رمز عبور خود را فراموش کرده اید؟'>فراموشی رمز عبور</Hyperlink>

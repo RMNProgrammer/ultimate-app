@@ -13,7 +13,7 @@ const auth = (state = [], action) => {
                 ...state, 
                 loading: action.loading,
                 logged: action.logged,
-                user: action.user,
+                users: action.response,
             }
         case actionTypes.LOGIN_FAILED:
             return { 
@@ -31,6 +31,7 @@ const auth = (state = [], action) => {
                 ...state, 
                 loading: action.loading,
                 logged: action.logged,
+                users: action.response
             }
         case actionTypes.REGISTER_FAILED:
             return { 

@@ -1,14 +1,14 @@
 import fetchUrl from '../utils/fetchUrl'
 import actionTypes from '../configs/actionTypes'
 
-const reduxCall = async (dispatch,{ url, method, name }) => {
+const reduxCall = async (dispatch,{ url, method, name, body }) => {
     dispatch({
         type: actionTypes[`${name}_STARTED`],
         loading: true,
         logged: true,
     })
     try{
-        const response = await fetchUrl({ url, method })
+        const response = await fetchUrl({ url, method, body })
         dispatch({
             type: actionTypes[`${name}_SUCCESS`],
             loading: false,
