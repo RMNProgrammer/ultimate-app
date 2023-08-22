@@ -41,6 +41,8 @@ export default function Login() {
       }
    },[users])
 
+   useEffect(() => { setMessage(null) },[])
+
    return (
       <>
          <Head>

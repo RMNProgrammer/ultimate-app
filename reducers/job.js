@@ -18,6 +18,22 @@ const job = (state = [], action) => {
                 ...state, 
                 ...action,
             }
+        case actionTypes.GET_SINGLE_JOB_STARTED:
+            return { 
+                ...state, 
+                loading: action.loading,
+            }
+        case actionTypes.GET_SINGLE_JOB_SUCCESS:
+            return { 
+                ...state, 
+                loading: action.loading,
+                job: action.response,
+             }
+        case actionTypes.GET_SINGLE_JOB_FAILED:
+            return { 
+                ...state, 
+                ...action,
+            }
         default:
             return state
     }

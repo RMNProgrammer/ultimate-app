@@ -2,10 +2,10 @@
 
 exports[`Button Renders Correctly 1`] = `
 <div
-  className="css-wemwrz"
+  className="css-fwxnis"
 >
   <button
-    className="css-16ru7d"
+    className="css-zcpnma"
     onClick={[Function]}
     type="button"
   >
@@ -16,10 +16,10 @@ exports[`Button Renders Correctly 1`] = `
 
 exports[`Button Shows Loading state 1`] = `
 <div
-  className="css-wemwrz"
+  className="css-fwxnis"
 >
   <button
-    className="css-16ru7d"
+    className="css-zcpnma"
     onClick={[Function]}
     type="button"
   >
