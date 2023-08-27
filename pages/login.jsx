@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Cookies from 'universal-cookie'
 import { useRouter } from 'next/router'
 import { LOGIN_ACTION } from '../actions/index'
 import LayoutAuth from '../containers/LayoutAuth'
@@ -10,6 +11,7 @@ import { InputEmail, InputPassword, Button, H2, Alert, Hyperlink } from '../comp
 export default function Login() {
    let found = false
    const router = useRouter()
+   const cookies = new Cookies()
    const dispatch = useDispatch()
    const [message,setMessage] = useState(null)
    const [formValue,setFormValue] = useState({})
@@ -34,6 +36,7 @@ export default function Login() {
             if ( user.email == formValue.email && user.password == formValue.password ){ 
                router.push('/') 
                setMessage(null)
+               cookies.set('user-id',user.id,{ path: '/' })
                found = true
             }
          })

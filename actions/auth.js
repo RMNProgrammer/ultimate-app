@@ -10,6 +10,16 @@ const LOGIN_ACTION = () => {
     }
 }
 
+const VERIFY_USER_ACTION = (user_id) => {
+    return async dispatch => {
+        return reduxCall(dispatch,{
+            url: `/user/${user_id}`,
+            method: 'GET',
+            name: 'VERIFY_USER',
+        })
+    }
+}
+
 const REGISTER_INFO_ACTION = () => {
     return async dispatch => {
         return reduxCall(dispatch,{
@@ -31,4 +41,4 @@ const REGISTER_ACTION = (formValue) => {
     }
 }
 
-export { LOGIN_ACTION, REGISTER_ACTION, REGISTER_INFO_ACTION }
+export { LOGIN_ACTION, VERIFY_USER_ACTION, REGISTER_ACTION, REGISTER_INFO_ACTION }

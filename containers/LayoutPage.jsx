@@ -85,7 +85,7 @@ const LayoutPage = ({ children }) => {
                         </li>
                      </ul> 
                   }
-                  { auth && auth.logged && <div className={css`padding-left:35px;`}>خوش آمدید</div> }
+                  { auth && auth.logged && <div className={css`padding-left:35px;`}>{auth.user.email} عزیز، خوش اومدی</div> }
                </div>
             </div>
          </div>

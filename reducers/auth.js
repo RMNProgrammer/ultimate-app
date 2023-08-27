@@ -20,6 +20,28 @@ const auth = (state = [], action) => {
                 ...state, 
                 ...action,
             }
+        case actionTypes.VERIFY_USER_STARTED:
+            return { 
+                ...state, 
+                logged: action.logged
+            }
+        case actionTypes.VERIFY_USER_SUCCESS:
+            let user = {}
+            if( action.response ){
+                user = {
+                    email: action.response.email
+                }
+            }
+            return { 
+                ...state, 
+                logged: action.logged,
+                user,
+            }
+        case actionTypes.VERIFY_USER_FAILED:
+            return { 
+                ...state, 
+                ...action,
+            }
         case actionTypes.REGISTER_STARTED:
             return { 
                 ...state, 
