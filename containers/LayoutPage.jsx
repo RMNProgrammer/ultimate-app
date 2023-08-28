@@ -1,11 +1,18 @@
 import { css, cx } from '@emotion/css'
-import { useSelector } from 'react-redux'
 import { useTheme } from '@emotion/react'
+import { LOGOUT_ACTION } from '../actions'
+import { useDispatch, useSelector } from 'react-redux'
 import { H3, H2, Hyperlink, Button, Paragraph, Small } from '../components'
 
 const LayoutPage = ({ children }) => {
-   const auth = useSelector((state) => state.auth)
    const theme = useTheme()
+   const dispatch = useDispatch()
+   const auth = useSelector((state) => state.auth)
+
+   const handleLogOut = () => {
+      dispatch(LOGOUT_ACTION())
+   }
+
    return (
       <div className={css`max-width: 100%;`} >
          <div
@@ -85,7 +92,32 @@ const LayoutPage = ({ children }) => {
                         </li>
                      </ul> 
                   }
-                  { auth && auth.logged && <div className={css`padding-left:35px;`}>{auth.user.email} عزیز، خوش اومدی</div> }
+                  { auth && auth.logged &&
+                     <ul 
+                        className={css`
+                           display: flex;
+                           li {
+                              display: flex;
+                              padding: 0 16px;
+                              align-items: center;
+                           }
+                           @media (min-width: 1px) and (max-width: 426px){
+                              li.welcome{
+                                 display:none;
+                              } 
+                           }
+                        `}
+                     >
+                        <li className='welcome' >
+                           {auth.user.email} عزیز، خوش اومدی
+                        </li>
+                        <li>
+                           <Button onClick={handleLogOut}>
+                              خروج
+                           </Button>
+                        </li>
+                     </ul> 
+                  }
                </div>
             </div>
          </div>

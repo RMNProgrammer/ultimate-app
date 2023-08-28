@@ -1,4 +1,5 @@
 import reduxCall from '../utils/reduxCall'
+import actionTypes from '../configs/actionTypes'
 
 const LOGIN_ACTION = () => {
     return async dispatch => {
@@ -41,4 +42,10 @@ const REGISTER_ACTION = (formValue) => {
     }
 }
 
-export { LOGIN_ACTION, VERIFY_USER_ACTION, REGISTER_ACTION, REGISTER_INFO_ACTION }
+const LOGOUT_ACTION = () => {
+    return {
+        type: actionTypes.LOGOUT
+    }
+}
+
+export { LOGIN_ACTION, VERIFY_USER_ACTION, REGISTER_ACTION, REGISTER_INFO_ACTION, LOGOUT_ACTION }

@@ -1,6 +1,8 @@
+import Cookies from 'universal-cookie'
 import actionTypes from '../configs/actionTypes'
 
 const auth = (state = [], action) => {
+    const cookies = new Cookies()
     switch(action.type) {
         case actionTypes.LOGIN_STARTED:
             return { 
@@ -72,6 +74,15 @@ const auth = (state = [], action) => {
             return { 
                 ...state, 
                 ...action,
+            }
+        case actionTypes.LOGOUT:
+            cookies.remove('user-id')
+            cookies.remove('logged')
+            cookies.remove('email')
+            return {
+                ...state,
+                logged: false,
+                user: {},
             }
         default:
             return state

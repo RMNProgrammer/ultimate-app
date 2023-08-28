@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import Cookies from 'universal-cookie'
 import createMyStore from '../configs/store'
 import { ThemeProvider } from '@emotion/react'
-import { VERIFY_USER_ACTION } from '../actions'
 import windowHandler from '../utils/windowsHandler'
+import { LOGOUT_ACTION, VERIFY_USER_ACTION } from '../actions'
 
 const store = createMyStore()
 
@@ -30,7 +30,18 @@ MyApp.getInitialProps = async (appContext) => {
       cookies = new Cookies()
    }
    windowHandler.cookies = cookies
-   if( cookies.get('user-id') ){
+   if( !(cookies.get('email')) && cookies.get('user-id') && cookies.get('logged') ){
+      if( appContext.ctx.res ){
+         const emailCookie = 'email='
+         appContext.ctx.res.setHeader('set-cookie',`${emailCookie}`)
+         const userIdCookie = 'user-id='
+         appContext.ctx.res.setHeader('set-cookie',`${userIdCookie}`)
+         const loggedCookie = 'logged=false'
+         appContext.ctx.res.setHeader('set-cookie',`${loggedCookie}`)
+      }
+      await store.dispatch(LOGOUT_ACTION())
+   }
+   else if( cookies.get('user-id') && cookies.get('user-id') != '' ){
       await store.dispatch(VERIFY_USER_ACTION(cookies.get('user-id')))
       const { auth } = await store.getState()
       const { email } = auth.user
@@ -47,6 +58,17 @@ MyApp.getInitialProps = async (appContext) => {
          if( !(cookies.get('logged')) ){
             cookies.set('logged',auth.logged,{ path: '/' })
          }
+      }
+   }
+   else{
+      if( appContext.ctx.res ){
+         const emailCookie = 'email='
+         appContext.ctx.res.setHeader('set-cookie',`${emailCookie}`)
+         const userIdCookie = 'user-id='
+         appContext.ctx.res.setHeader('set-cookie',`${userIdCookie}`)
+         const loggedCookie = 'logged=false'
+         appContext.ctx.res.setHeader('set-cookie',`${loggedCookie}`)
+         await store.dispatch(LOGOUT_ACTION())
       }
    }
    const pageProps = await App.getInitialProps(appContext)
